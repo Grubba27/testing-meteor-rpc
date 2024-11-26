@@ -1,17 +1,26 @@
 import React, { Suspense } from "react";
-import { Hello } from "./Hello";
-import { Info } from "./Info";
+import { Main } from "./Main";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Chat } from "./Chat";
 const queryClient = new QueryClient();
 export const App = () => (
   <QueryClientProvider client={queryClient}>
-    <div>
-      <h1>Welcome to Meteor!</h1>
-      <Suspense fallback={<h1>Loading...</h1>}>
-        <Hello />
-      </Suspense>
-      <Info />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          index
+          element={
+            <div>
+              <Suspense fallback={<h1>Loading...</h1>}>
+                <Main />
+              </Suspense>
+            </div>
+          }
+        />
+
+        <Route path="/chat/:chatId" element={<Chat />} />
+      </Routes>
+    </BrowserRouter>
   </QueryClientProvider>
 );

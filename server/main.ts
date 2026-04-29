@@ -1,6 +1,7 @@
 import { ChatCollection, MessageCollection } from "/imports/api/chat";
 import { createModule } from "meteor-rpc";
 import { z } from "zod";
+import { exampleSubmodule } from "./submodule";
 
 const server = createModule()
   .addPublication("chatRoom", z.string(), (chatId) => {
@@ -38,6 +39,7 @@ const server = createModule()
       );
     }
   )
+  .addSubmodule(exampleSubmodule)
   .build();
 
 export type Server = typeof server;

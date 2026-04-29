@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "plugins": [{ "name": "meteor-rpc-ts-plugin" }],
     /* Basic Options */
     "target": "es2018",
     "module": "esNext",
